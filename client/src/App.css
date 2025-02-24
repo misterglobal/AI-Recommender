@@ -1,0 +1,11 @@
+.App {
+    @apply min-h-screen bg-gray-100;
+  }
+  
+  .App-header {
+    @apply bg-white shadow-md p-4;
+  }
+  
+  .App-header h1 {
+    @apply text-2xl font-bold text-gray-800;
+  }
