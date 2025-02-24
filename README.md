@@ -40,19 +40,19 @@ business-ai-recommendations
 ## Installation
 
 1. Clone the repository:
-   ```
+   ```bash
    git clone <repository-url>
    cd business-ai-recommendations
    ```
 
 2. Install dependencies for the client:
-   ```
+   ```bash
    cd client
    npm install
    ```
 
 3. Install dependencies for the server:
-   ```
+   ```bash
    cd ../server
    npm install
    ```
@@ -62,15 +62,26 @@ business-ai-recommendations
 ## Usage
 
 1. Start the server:
-   ```
+   ```bash
    cd server
    npm start
    ```
 
-2. Start the client:
-   ```
+2. Start the client (using legacy SSL provider for Node.js 18+):
+   ```bash
    cd client
+   set NODE_OPTIONS=--openssl-legacy-provider
    npm start
+   ```
+
+   Alternatively, you can update the client's package.json scripts:
+   ```json
+   {
+     "scripts": {
+       "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+       "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
+     }
+   }
    ```
 
 3. Open your browser and navigate to `http://localhost:3000` to access the application.

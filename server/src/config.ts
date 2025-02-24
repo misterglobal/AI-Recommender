@@ -2,12 +2,10 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const config = {
-    googleBusinessApiKey: process.env.GOOGLE_BUSINESS_API_KEY,
-    crunchbaseApiKey: process.env.CRUNCHBASE_API_KEY,
-    hunterApiKey: process.env.HUNTER_API_KEY,
-    openaiApiKey: process.env.OPENAI_API_KEY,
-    port: process.env.PORT || 5000,
+export const config = {
+    port: process.env.PORT || 3001,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPENAI_API_URL: process.env.OPENAI_API_URL || 'https://api.openai.com/v1/chat/completions',
+    HUNTER_API_KEY: process.env.HUNTER_API_KEY,
+    CRUNCHBASE_API_KEY: process.env.CRUNCHBASE_API_KEY
 };
-
-module.exports = config;

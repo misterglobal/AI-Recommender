@@ -3,21 +3,36 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && craco start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "axios": "^0.21.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
     "tailwindcss": "^2.2.19"
   },
   "devDependencies": {
-    "typescript": "^4.1.2",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.2"
+    "@craco/craco": "^7.1.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "typescript": "^4.9.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

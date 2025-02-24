@@ -1,17 +1,20 @@
-export const handleBusinessInput = async (req, res) => {
-    const { businessName, email, industry, businessSize, annualRevenue, customerDemographics } = req.body;
+import { Request, Response } from 'express';
+import { BusinessInput } from '../types';
 
-    // Validate input
-    if (!businessName || !email || !industry || !businessSize || !annualRevenue || !customerDemographics) {
-        return res.status(400).json({ message: 'All fields are required.' });
-    }
-
+export const handleBusinessInput = async (req: Request, res: Response) => {
     try {
+        const input: BusinessInput = req.body;
+
+        // Validate input
+        if (!input.businessName || !input.email || !input.industry || !input.businessSize || !input.annualRevenue || !input.customerDemographics) {
+            return res.status(400).json({ message: 'All fields are required.' });
+        }
+
         // Fetch data from external APIs
-        const googleReviews = await fetchGoogleReviews(businessName);
-        const linkedInInfo = await fetchLinkedInInfo(businessName);
-        const fundingData = await fetchFundingData(businessName);
-        const emailDomainInfo = await verifyEmailDomain(email);
+        const googleReviews = await fetchGoogleReviews(input.businessName);
+        const linkedInInfo = await fetchLinkedInInfo(input.businessName);
+        const fundingData = await fetchFundingData(input.businessName);
+        const emailDomainInfo = await verifyEmailDomain(input.email);
 
         // Aggregate data
         const aggregatedData = {
@@ -28,18 +31,22 @@ export const handleBusinessInput = async (req, res) => {
     }
 };
 
-const fetchGoogleReviews = async (businessName) => {
-    // Logic to fetch Google Business Reviews
+const fetchGoogleReviews = async (businessName: string) => {
+    // Implementation
 };
 
-const fetchLinkedInInfo = async (businessName) => {
-    // Logic to fetch LinkedIn Company Info
+const fetchLinkedInInfo = async (businessName: string) => {
+    // Implementation
 };
 
-const fetchFundingData = async (businessName) => {
-    // Logic to fetch Crunchbase Funding Data
+const fetchFundingData = async (businessName: string) => {
+    // Implementation
 };
 
-const verifyEmailDomain = async (email) => {
-    // Logic to verify email domain using Hunter.io
+const verifyEmailDomain = async (email: string) => {
+    // Implementation
+};
+
+export const businessController = {
+    processUserInput: handleBusinessInput
 };

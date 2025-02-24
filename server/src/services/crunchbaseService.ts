@@ -1,5 +1,3 @@
-Sure, here's the contents for the file: /business-ai-recommendations/business-ai-recommendations/server/src/services/crunchbaseService.ts
-
 import axios from 'axios';
 import { CrunchbaseData } from '../types';
 

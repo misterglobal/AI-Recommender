@@ -1,20 +1,21 @@
-Sure, here's the contents for the file: /business-ai-recommendations/business-ai-recommendations/server/src/services/openaiService.ts
-
 import axios from 'axios';
+import { AIRecommendationRequest } from '../types';
+import { config } from '../config';
 
-const OPENAI_API_URL = process.env.OPENAI_API_URL;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+export const generateRecommendations = async (input: AIRecommendationRequest): Promise<string[]> => {
+    if (!config.OPENAI_API_URL) {
+        throw new Error('OpenAI API URL not configured');
+    }
 
-export const generateRecommendations = async (userInput) => {
     try {
         const response = await axios.post(
-            OPENAI_API_URL,
+            config.OPENAI_API_URL,
             {
                 model: "gpt-4",
                 messages: [
                     {
                         role: "user",
-                        content: `Based on the following user input, generate 10 tailored AI use cases: ${JSON.stringify(userInput)}`
+                        content: `Based on the following user input, generate 10 tailored AI use cases: ${JSON.stringify(input)}`
                     }
                 ],
                 max_tokens: 150,
@@ -22,7 +23,7 @@ export const generateRecommendations = async (userInput) => {
             },
             {
                 headers: {
-                    'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                    'Authorization': `Bearer ${config.OPENAI_API_KEY}`,
                     'Content-Type': 'application/json',
                 },
             }

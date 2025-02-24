@@ -1,5 +1,3 @@
-Sure, here's the contents for the file: /business-ai-recommendations/business-ai-recommendations/server/src/services/googleBusinessService.ts
-
 import axios from 'axios';
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;

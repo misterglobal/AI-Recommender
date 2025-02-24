@@ -1,23 +1,29 @@
-Sure, here's the contents for the file: /business-ai-recommendations/business-ai-recommendations/client/src/services/api.ts
-
 import axios from 'axios';
+import type { AxiosError } from 'axios';
+import { FormData, ApiResponse } from '../types';
 
-const API_URL = 'http://localhost:5000/api'; // Adjust the URL as needed
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
-export const submitUserInput = async (userInput) => {
+export const submitUserInput = async (userInput: FormData): Promise<ApiResponse> => {
     try {
-        const response = await axios.post(`${API_URL}/submit`, userInput);
+        const response = await axios.post<ApiResponse>(`${API_URL}/submit`, userInput);
         return response.data;
     } catch (error) {
-        throw new Error('Error submitting user input: ' + error.message);
+        if (axios.isAxiosError(error)) {
+            throw new Error('Error submitting user input: ' + error.message);
+        }
+        throw new Error('An unknown error occurred');
     }
 };
 
-export const fetchRecommendations = async () => {
+export const fetchRecommendations = async (data: FormData): Promise<string[]> => {
     try {
-        const response = await axios.get(`${API_URL}/recommendations`);
-        return response.data;
+        const response = await axios.post<ApiResponse>(`${API_URL}/recommendations`, data);
+        return response.data.recommendations || [];
     } catch (error) {
-        throw new Error('Error fetching recommendations: ' + error.message);
+        if (axios.isAxiosError(error)) {
+            throw new Error('Error fetching recommendations: ' + error.message);
+        }
+        throw new Error('An unknown error occurred');
     }
 };

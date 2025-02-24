@@ -1,11 +1,8 @@
-export const router = require('express').Router();
-const businessController = require('../controllers/businessController');
-const aiController = require('../controllers/aiController');
+import { Router } from 'express';
+import { businessController } from '../controllers/businessController';
 
-// Route for submitting user input
+const router = Router();
+
 router.post('/submit', businessController.processUserInput);
 
-// Route for getting AI recommendations
-router.get('/recommendations', aiController.getRecommendations);
-
-module.exports = router;
+export default router;

@@ -1,5 +1,3 @@
-Sure, here's the contents for the file: /business-ai-recommendations/business-ai-recommendations/client/src/components/BusinessForm.tsx
-
 import React, { useState } from 'react';
 
 const BusinessForm: React.FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {

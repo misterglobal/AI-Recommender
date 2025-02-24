@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 import BusinessForm from './components/BusinessForm';
 import RecommendationList from './components/RecommendationList';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -24,12 +25,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Business AI Recommendations</h1>
-      <BusinessForm onSubmit={handleFormSubmit} />
-      {loading && <LoadingSpinner />}
-      {error && <ErrorMessage message={error} />}
-      <RecommendationList recommendations={recommendations} />
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white shadow-md p-4">
+        <h1 className="text-2xl font-bold text-gray-800">
+          Business AI Recommendations
+        </h1>
+      </header>
+      <div className="container mx-auto p-4">
+        <BusinessForm onSubmit={handleFormSubmit} />
+        {loading && <LoadingSpinner />}
+        {error && <ErrorMessage message={error} />}
+        <RecommendationList recommendations={recommendations} />
+      </div>
     </div>
   );
 };
